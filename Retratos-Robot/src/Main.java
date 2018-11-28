@@ -2,41 +2,38 @@ import java.util.Scanner;
 
 public class Main {
 	
-	
+	static Scanner in = new Scanner(System.in);
 	static String [][] rasgos = {
-								{"WWWWWWWWW" ,"\\\\\\//////" ,"|\"\"\"\"\"\"\"|" , "|||||||||"} ,
-								{ "|  O O  |" , " |-(· ·)-|" , "|-(o o)-|" , "|  \\ /  |" },
-								{" @   J   @" , "{   \"   }" , "[   j   ]" , "<   -   >" }, 
-								{ "|  ===  |" , "|   -   |" , "|  ___  |" , "|  ---  |" } ,
-								{ "\\_______/ " , "\\,,,,,,,/"}
-};
+		{"pelo", "WWWWWWWWW", "\\\\\\//////", "|\"\"\"\"\"\"\"|", "|||||||||"},
+		{"ojos", "|  O O  |", "|-(· ·)-|", "|-(o o)-|", "|  \\ /  |"},
+		{"nariz", "@   J   @", "{   \"   }", "[   j   ]", "<   -   >"},
+		{"boca", "|  ===  |", "|   -   |", "|  ___  |", "|  ---  |"},
+		{"barbilla", "\\_______/", "\\,,,,,,,/"}
+	};
 	
-
-	static String grtOpcion(int rasgo, String nombre) {
-		Scanner teclado = new Scanner(System.in);
-		int opcion;
-		for(int i = 0; i < rasgos[rasgo].length; i++) {
-		System.out.println(rasgos[rasgo][i]);
+	static String getRasgo(int faccion) {
+		int rasgo;
+		for (int i=1; i<rasgos[faccion].length; i++)
+			System.out.println(i + " - " + rasgos[faccion][i]);
 		do {
-			System.out.println("Elige opción para: " + nombre + "(1- " + rasgo);
-			opcion = teclado.nextInt();
-			if(opcion < 1 || opcion > rasgos[rasgo].length)
-				System.out.println("La opción elegida no es correcta. vuelve a elegir: ");
-		}while (opcion < 1 || opcion > rasgos [rasgo].length);
-		return rasgos [rasgo][opcion-1];
+			System.out.println("Elige la opción para " + rasgos[faccion][0] + " (1-" + (rasgos[faccion].length - 1) + "):");
+			rasgo = in.nextInt();
+			if (rasgo < 1 || rasgo > rasgos[faccion].length)
+				System.out.println("La opción elegida no es correcta. Vuelve a introducirla");
+		} while (rasgo < 1 || rasgo > rasgos[faccion].length);
+		return rasgos[faccion][rasgo];
 	}
-	
-	
 	
 	public static void main(String[] args) {
 		
-		int n;
-		do {
-    	retratos();
-    	System.out.println("Hacer otro retrato SI(1) NO(0)");
-    	n = teclado.nextInt();
-    }while(n!=0);
-     }
+		String [] retrato = new String[5];
+		for (int i=0; i<retrato.length; i++)
+			retrato[i] = getRasgo(i);
+		for (int i=0; i<retrato.length; i++)
+			System.out.println(retrato[i]);
+	}
+	
+}
 	
 	
 	
@@ -172,10 +169,10 @@ public class Main {
 //		System.out.println("\\_______/ ");
 //		
 //		System.out.println("  WANTED   ");
-	}
+	
 
 	
 	
-	}
+	
 
 
